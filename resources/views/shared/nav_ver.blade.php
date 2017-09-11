@@ -27,15 +27,9 @@
             <div class="bottom">
                 <p> <i class="fa fa-commenting-o" aria-hidden="true"></i> &nbspFourms</p>
                 <ul style="">
-                    <li><a href="{{route('home','ICO')}}">ICO's</a></li>
-                    <li><a href="{{route('home','MINING')}}">Mining</a></li>
-                    <li><a href="{{route('home','ECONOMY')}}">Economy</a></li>
-                    <li><a href="{{route('home','POLITICS')}}">Politics</a></li>
-                    <li><a href="{{route('home','TECHNOLOGY')}}">Technology</a></li>
-                    <li><a href="{{route('home','OF_TOPIC')}}">Off topic</a></li>
-                    <li><a href="{{route('home','ALGORITHMIC')}}">Algorithmic</a></li>
-                    <li><a href="{{route('home','PHILOSOPHY')}}">Philosophy</a></li>
-                    <li><a href="{{route('home','HELP')}}">Help</a></li>
+                    @foreach($forums as $forum)
+                        <li><a href="{{route('home',$forum->name)}}">{{$forum->name}}</a></li>
+                    @endforeach
                 </ul>
             </div>
         </section>

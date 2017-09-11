@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Lang;
 
 class LoginController extends Controller
 {
@@ -30,8 +33,30 @@ class LoginController extends Controller
     /**
      * Create a new controller instance.
      *
+     * @param Request $request
      * @return void
      */
+    /* Method override to send correct error messages
+    * Get the failed login response instance.
+    *
+    * @param \Illuminate\Http\Request  $request
+    * @return \Illuminate\Http\Response
+    */
+//    protected function sendFailedLoginResponse(Request $request)
+//    {
+//
+//
+//        if ( ! User::where('email', $request->email)->first() ) {
+//            return redirect()->back()->with('error_msg','Invalid email address');
+//        }
+//
+//        if ( ! User::where('email', $request->email)->where('password', bcrypt($request->password))->first() ) {
+//
+//            return redirect()->back()->with('error_msg','Invalid password');
+//
+//        }
+//
+//    }
     public function __construct()
     {
         $this->middleware('guest')->except('logout');

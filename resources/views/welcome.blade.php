@@ -70,10 +70,10 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="modal-title">
-                        <img src="{{asset('assets/img/logo.png')}}">
+{{--                        <img src="{{asset('assets/img/logo.png')}}">--}}
                         <img src="{{asset("assets/img/logotext.png")}}">
-                        <button type="button" class=" pull-right" data-toggle="modal" data-target="#signinModal" data-dismiss="modal" >Log in</button>
-                        <a type="button" class="pull-right">Sign up </a>
+                        {{--<button type="button" class=" pull-right" data-toggle="modal" data-target="#signinModal" data-dismiss="modal" >Log in</button>--}}
+                        {{--<a type="button" class="pull-right">Sign up </a>--}}
                     </div>
 
                 </div>
@@ -86,19 +86,19 @@
                             <div class="form-group">
                                 <label class="control-label col-sm-4" for="firstname">First Name</label>
                                 <div class="col-sm-8">
-                                    <input name="first_name" type="text" class="form-control" id="firstname" placeholder="">
+                                    <input name="first_name" type="text" class="form-control" id="firstname" value="{{ old('first_name') }}" placeholder="">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-sm-4" for="lastname">Last Name</label>
                                 <div class="col-sm-8">
-                                    <input name="last_name" type="text" class="form-control" id="lastname" placeholder="">
+                                    <input name="last_name" type="text" class="form-control" id="lastname" value="{{ old('last_name') }}"  placeholder="">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-sm-4" for="signup_email_2">Your Email</label>
                                 <div class="col-sm-8">
-                                    <input name="email" type="email" class="form-control" id="signup_email_2" placeholder="">
+                                    <input name="email" type="email" class="form-control" id="signup_email_2" value="{{ old('email') }}"  placeholder="">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -117,6 +117,21 @@
                                 <label class="control-label col-sm-8" for="pwd">Please read <a href="#"> Terms & conditions</a></label>
                                 <div class="checkbox col-sm-4">
                                     <label><input name="i_agree" type="checkbox"> I agree</label>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+
+                                <div class="checkbox col-sm-8">
+                                    @if ($errors->has('email') && session()->get('r_error') == 'register')
+                                    <span class="help-block">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                    <script>
+                                    $('#signupModal').modal('show');
+                                    </script>
+                                    @endif
+
                                 </div>
 
                             </div>
@@ -152,10 +167,10 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="modal-title">
-                        <img class=""src="{{asset("assets/img/logo.png")}}">
+{{--                        <img class=""src="{{asset("assets/img/logo.png")}}">--}}
                         <img class="" src="{{asset("assets/img/logotext.png")}}">
-                        <button type="button" class=" pull-right">Log in</button>
-                        <a type="button"  href="" data-dismiss="modal"  data-toggle="modal" data-target="#signupModal"class="pull-right">Sign up </a>
+                        {{--<button type="button" class=" pull-right">Log in</button>--}}
+                        {{--<a type="button"  href="" data-dismiss="modal"  data-toggle="modal" data-target="#signupModal"class="pull-right">Sign up </a>--}}
                     </div>
 
                 </div>
@@ -168,13 +183,26 @@
                             <div class="form-group">
                                 <label class="control-label col-sm-4" for="email">Enter username or Email</label>
                                 <div class="col-sm-8">
-                                    <input name="email" type="email" class="form-control" id="email" placeholder="">
+                                    <input name="email" type="email" class="form-control" id="email" value="{{ old('email') }}" placeholder="">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-sm-4" for="pwd"> Enter Password:</label>
                                 <div class="col-sm-8">
                                     <input name="password" type="password" class="form-control" id="pwd" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4"></label>
+                                <div class="col-sm-8">
+                                    @if ($errors->has('email') && session()->get('r_error') !="register")
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                        <script>
+                                            $('#signinModal').modal('show');
+                                        </script>
+                                    @endif
                                 </div>
                             </div>
 
@@ -478,3 +506,4 @@
         });
     </script>
 @endsection
+
