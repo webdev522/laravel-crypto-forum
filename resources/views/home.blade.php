@@ -11,7 +11,7 @@
                     <p class="pull-right top-text-right"> <a href="#">See all >> </a></p>
                 </div>
 				@if(isset($posts))
-                    @include('single')
+                    {{--@include('single')--}}
                 @else
                 <div class="row" style="border:1px solid #eee; margin-right:20px; padding:10px 0px; border-left:0px;">
                     <div class="col-md-12 ">
@@ -48,33 +48,6 @@
                     </div>
 
                 </div>
-
-                {{--<div class="row">--}}
-                    {{--<div class="col-md-3 col-sm-3 ">--}}
-                        {{--<table class="table table-condensed table-responsive">--}}
-                            {{--<thead>--}}
-                            {{--<tr>--}}
-                                 {{--<th><img class="img"src=" {{asset('assets/img/btc.jpg')}}"></th>--}}
-                                {{--<th>Bitcoin (BTC)</th>--}}
-
-                            {{--</tr>--}}
-                            {{--</thead>--}}
-
-                        {{--</table>--}}
-                        {{--<label style="color: #337ab7">Pair: <span class="pull-right">BTC/USDT</span></label><br>--}}
-                        {{--<label>Last 24 hours:</label>--}}
-                        {{--<label>BTC/USDT <span class="pull-right">BTC/USDT</span></label><br>--}}
-                        {{--<label>Change <span class="pull-right">BTC/USDT</span></label><br>--}}
-                        {{--<label>High: <span class="pull-right">BTC/USDT</span></label><br>--}}
-                        {{--<label>Low: <span class="pull-right">BTC/USDT</span></label><br>--}}
-                        {{--<label>Volume: <span class="pull-right">BTC/USDT</span></label><br>--}}
-                    {{--</div>--}}
-                    {{--<div class="col-md-7 col-sm-7 ">--}}
-                        {{--<div class="graph"></div>--}}
-                    {{--</div>--}}
-                    {{--<div class="col-md-2 col-sm-2 "> </div>--}}
-                {{--</div>--}}
-                <!-- tabs start-->
                 <div class="row">
                     <div id="exTab1" class="">
                         <div class="col-md-4 col-sm-3">
@@ -95,7 +68,7 @@
 
 
                                 @if(isset($forum_threads))
-                                    @include('home_forum_threads')
+                                    {{--@include('home_forum_threads')--}}
                                 @else
                                     @include('home_threads')
                                 @endif
@@ -103,13 +76,14 @@
                             <hr>
 
 
-                            <div class="tab-pane" id="2a">  @include('charts')
+                            <div class="tab-pane" id="2a">
+                                {{--@include('charts')--}}
 							</div>
                             <div class="tab-pane" id="3a"> 
-								  @include('following')
+								  {{--@include('following')--}}
 							</div>
                             <div class="tab-pane" id="4a">
-								@include('links')
+								{{--@include('links')--}}
                             </div>
                             <div class="tab-pane" id="5a">
                                 <div class="panel-footer">

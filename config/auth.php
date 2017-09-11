@@ -17,6 +17,8 @@ return [
         'guard' => 'web',
         'passwords' => 'users',
     ],
+    'email' => 'Email address not found',
+    'password' => 'Incorrect password',
 
     /*
     |--------------------------------------------------------------------------
