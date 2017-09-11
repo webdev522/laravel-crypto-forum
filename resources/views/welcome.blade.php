@@ -70,8 +70,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="modal-title">
-{{--                        <img src="{{asset('assets/img/logo.png')}}">--}}
-                        <img src="{{asset("assets/img/logotext.png")}}">
+                        <img src="{{asset('assets/img/logo.png')}}">
+{{--                        <img src="{{asset("assets/img/logotext.png")}}">--}}
                         {{--<button type="button" class=" pull-right" data-toggle="modal" data-target="#signinModal" data-dismiss="modal" >Log in</button>--}}
                         {{--<a type="button" class="pull-right">Sign up </a>--}}
                     </div>
@@ -159,7 +159,7 @@
     <!-- login modal -->
 
 
-    <!-- sign up Modal -->
+    <!-- sign in Modal -->
     <div id="signinModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
@@ -167,8 +167,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="modal-title">
-{{--                        <img class=""src="{{asset("assets/img/logo.png")}}">--}}
-                        <img class="" src="{{asset("assets/img/logotext.png")}}">
+                        <img class=""src="{{asset("assets/img/logo.png")}}">
+                        {{--<img class="" src="{{asset("assets/img/logotext.png")}}">--}}
                         {{--<button type="button" class=" pull-right">Log in</button>--}}
                         {{--<a type="button"  href="" data-dismiss="modal"  data-toggle="modal" data-target="#signupModal"class="pull-right">Sign up </a>--}}
                     </div>

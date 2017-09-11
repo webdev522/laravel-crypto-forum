@@ -42,6 +42,12 @@ class ThreadController extends Controller
         $thread = new thread();
         $thread->title = $request['title'];
         $thread->text = $request['text'];
+        if (strpos($request['text'], '</a>') !== false) {
+           $thread->is_link=1;
+        }
+        if (strpos($request['text'], '</img>') !== false) {
+            $thread->is_chart=1;
+        }
         $thread->user_id = $request->user()->id;
         $thread->slug = $request['slug'];
         $thread->save();

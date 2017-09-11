@@ -13,6 +13,6 @@ class favourite extends Model
 
     public function threads()
     {
-        return $this->hasOne(thread::class, 'user_id','f_follower_id');
+        return $this->hasOne(thread::class, 'user_id','f_follower_id')->withCount('like')->withCount('like_user');
     }
 }

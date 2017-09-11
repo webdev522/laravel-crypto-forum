@@ -74,9 +74,10 @@
                             {{--</script>--}}
                             <div class="reply-box hide" id="{{$thread->id}}">
 
-                                <form method="POST" action="{{route('posts.store')}}">
+                                <form method="POST" action="{{route('threads.store')}}">
                                     {{csrf_field()}}
-                                    <input type="hidden" name="thread_id" value="{{$thread->id}}">
+                                    <input type="hidden" name="title" value="{{$thread->title}}">
+                                    <input type="hidden" name="slug" value="{{$thread->slug}}">
                                     <div class="form-group">
                                         <div id="sample">
                                             <textarea name="text"></textarea>
@@ -110,7 +111,7 @@
 
                           <div class="comment-box-bottom">
                                 <ul>
-                               <li class=""><a href="javascript:void(0);"  onclick="like('{{$thread->id}}','thread')" ><i class="fa like_h like2 {{($thread->like_count > 0)?'fa-heart':'fa-heart-o'}} text-info" aria-hidden="true"></i></a>
+                               <li class=""><a href="javascript:void(0);"  onclick="like('{{$thread->id}}','thread')" ><i class="fa like_h like {{($thread->like_user_count > 0)?'fa-heart':'fa-heart-o'}} text-info" aria-hidden="true"></i></a>
 
                                 <div class="hide" style="color: #3c763d;display: inherit;">{{$thread->like_count}}</div>
                             </li>
@@ -147,28 +148,6 @@
 
 <script type="text/javascript">
     $('document').ready(function(){
-
-        $(".like2").click(function(){
-            var $this   = $(this)
-            var $temp=$($(this).parent().closest('li')).children()[1].innerHTML;
-            $temp=parseInt($temp);
-
-            if($this.hasClass('fa-heart')) {
-                $this.css("color", "#31708f").addClass('fa-heart-o').removeClass('fa-heart');
-                $temp--;
-                $($(this).parent().closest('li')).children()[1].innerHTML=$temp.toString();
-
-            }
-            else
-            {
-                $this.css("color", "#31708f").removeClass('fa-heart-o').addClass('fa-heart');
-                $temp++;
-                $($(this).parent().closest('li')).children()[1].innerHTML=$temp.toString();
-
-            }
-
-
-        });
         $(".reply").click(function(){
             var $this   = $(this)
             var $temp=$($(this).parentsUntil('textarea'));
@@ -179,11 +158,5 @@
 
         });
     });
-    $(document).ready(function(){
-        $(".like_h").hover(function(){
-            $($($(this).parent().closest('li')).children()[1]).removeClass("hide");
-        }, function(){
-            $($($(this).parent().closest('li')).children()[1]).addClass("hide");
-        });
-    });
+
 </script>

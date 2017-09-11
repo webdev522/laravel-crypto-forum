@@ -10,8 +10,8 @@
                         <span class="glyphicon glyphicon-chevron-down" ></span></p>
                     <p class="pull-right top-text-right"> <a href="#">See all >> </a></p>
                 </div>
-				@if(isset($posts))
-                    {{--@include('single')--}}
+				@if(isset($single))
+                    @include('home_partials.single')
                 @else
                 <div class="row" style="border:1px solid #eee; margin-right:20px; padding:10px 0px; border-left:0px;">
                     <div class="col-md-12 ">
@@ -58,7 +58,9 @@
                             <li><a href="#2a" data-toggle="tab">Charts</a></li>
                             <li><a href="#3a" data-toggle="tab">Following</a></li>
                             <li><a href="#4a" data-toggle="tab">Links</a></li>
+                            @if(isset($forum_threads))
                             <li><a href="#5a" data-toggle="tab">New</a></li>
+                            @endif
                              <li><a href=""> <i class="fa fa-sort-amount-desc" aria-hidden="true"></i></a> </li>
                         </ul>
 
@@ -68,23 +70,24 @@
 
 
                                 @if(isset($forum_threads))
-                                    {{--@include('home_forum_threads')--}}
+                                    @include('home_partials.home_forum_threads')
                                 @else
-                                    @include('home_threads')
+                                    @include('home_partials.home_threads')
                                 @endif
                             </div> <!-- first post end-->
                             <hr>
 
 
                             <div class="tab-pane" id="2a">
-                                {{--@include('charts')--}}
+                                @include('home_partials.charts')
 							</div>
                             <div class="tab-pane" id="3a"> 
-								  {{--@include('following')--}}
+								  @include('home_partials.following')
 							</div>
                             <div class="tab-pane" id="4a">
-								{{--@include('links')--}}
+								@include('home_partials.links')
                             </div>
+                            @if(isset($forum_threads))
                             <div class="tab-pane" id="5a">
                                 <div class="panel-footer">
                                     <div class="reply-box">
@@ -110,6 +113,7 @@
                                 </div>
 
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div> <!-- row -->
@@ -301,6 +305,38 @@
                         $(".profile-display",this).addClass("hide");
                       }
                     );
+        });
+        $('document').ready(function(){
+
+            $(".like").click(function(){
+                var $this   = $(this)
+                var $temp=$($(this).parent().closest('li')).children()[1].innerHTML;
+                $temp=parseInt($temp);
+
+                if($this.hasClass('fa-heart')) {
+                    $this.css("color", "#31708f").addClass('fa-heart-o').removeClass('fa-heart');
+                    $temp--;
+                    $($(this).parent().closest('li')).children()[1].innerHTML=$temp.toString();
+
+                }
+                else
+                {
+                    $this.css("color", "#31708f").removeClass('fa-heart-o').addClass('fa-heart');
+                    $temp++;
+                    $($(this).parent().closest('li')).children()[1].innerHTML=$temp.toString();
+
+                }
+
+
+            });
+        });
+        $(document).ready(function(){
+            $(".like_h").hover(function(){
+                // console.log( $($(this).parent().closest('li').children()[1]));
+                $($($(this).parent().closest('li')).children()[1]).removeClass("hide");
+            }, function(){
+                $($($(this).parent().closest('li')).children()[1]).addClass("hide");
+            });
         });
                    
 
