@@ -38,8 +38,8 @@ class HomeController extends Controller
         $forums=forum::all();
         $follows=favourite::where('f_user_id','=',1)->get();
         //$follows->load(['following','following.threads']);
-        foreach ($follows as $follow)
-            dd($follow->threads->like);
+       // foreach ($follows as $follow)
+           // dd($follow->threads->like);
         $home_thread=thread::withCount('like')->get();
         return view('home')
             ->with('home_thread',$home_thread)
