@@ -103,6 +103,47 @@
     @yield('javascript')
     <!-- Scripts -->
     {{--<script src="{{ asset('js/app.js') }}"></script>--}}
+<script type="text/javascript">
+    $('document').ready(function(){
+        $(".reply").click(function(){
+            var $this   = $(this)
+            var temp=$(this).closest('div[class="col-md-12"]').children('div[class="panel-footer"]').children('div[class="reply-box hide"]');
+            if(temp.hasClass('hide')) {
+                $(temp).removeClass('hide');
+                var $temp = $($(this).closest('div[class="col-md-12"]').children('div[class="panel-footer"]').children('div[class="reply-box"]').children('form').children('div[class="form-group"]').children('div').children());
+                if ($temp.next('.note-editor').length === 0) {
+                    $temp.summernote();
+                }
+                var $temp = $($(this).closest('div[class="col-md-12"]').children('div[class="panel-footer"]').children('div[class="reply-box"]').children('form').children('button[class="reply-close hide btn btn-danger"]').removeClass('hide'));
+            }
+        });
+        $(".reply-close").click(function(){
+            var temp=$(this).parentsUntil('div[class="form-group"]').children('form').children('div[class="form-group"]').children('div').children();
+            // $(temp).summernote('destroy');
+            console.log(temp);
+            var $this   = $(this).closest('div[class="reply-box"]').addClass('hide');
+        });
+        $(".quote").click(function(){
+            var $this   = $(this)
+            var temp=$(this).closest('div[class="col-md-12"]').children('div[class="panel-footer"]').children('div[class="reply-box hide"]');
+            if(temp.hasClass('hide')) {
+                $(temp).removeClass('hide');
+                var $temp = $($(this).closest('div[class="col-md-12"]').children('div[class="panel-footer"]').children('div[class="reply-box"]').children('form').children('div[class="form-group"]').children('div').children());
+                if ($temp.next('.note-editor').length === 0) {
+                    var markupStr = $(this).parentsUntil('div[class="col-md-10 col-sm-10 col-xs-12"]').closest('div[class="col-md-10 col-sm-10 col-xs-12"]').children('div[class="col-md-12 col-sm-12 comment-text"]').html();
+                    console.log(markupStr);
+                    $temp.summernote('code',markupStr);
+                }
+//                var $temp = $($(this).closest('div[class="col-md-12"]').children('div[class="panel-footer"]').children('div[class="reply-box"]').children('form').children('div[class="form-group"]').children('div').children().summernote());
+                var $temp = $($(this).closest('div[class="col-md-12"]').children('div[class="panel-footer"]').children('div[class="reply-box"]').children('form').children('button[class="reply-close hide btn btn-danger"]').removeClass('hide'));
+            }
+        });
+
+    });
+
+
+</script>
+
 
 </body>
 </html>

@@ -58,7 +58,7 @@
                             <li><a href="#2a" data-toggle="tab">Charts</a></li>
                             <li><a href="#3a" data-toggle="tab">Following</a></li>
                             <li><a href="#4a" data-toggle="tab">Links</a></li>
-                            @if(isset($forum_threads))
+                            @if(isset($forum_threads) && isset($slug))
                             <li><a href="#5a" data-toggle="tab">New</a></li>
                             @endif
                              <li><a href=""> <i class="fa fa-sort-amount-desc" aria-hidden="true"></i></a> </li>
@@ -87,7 +87,7 @@
                             <div class="tab-pane" id="4a">
 								@include('home_partials.links')
                             </div>
-                            @if(isset($forum_threads))
+                            @if(isset($forum_threads) && isset($slug))
                             <div class="tab-pane" id="5a">
                                 <div class="panel-footer">
                                     <div class="reply-box">
