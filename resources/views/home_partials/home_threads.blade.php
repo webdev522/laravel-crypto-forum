@@ -48,22 +48,6 @@
                                     <div class="form-group">
                                         <div id="sample">
                                             <textarea class="reply_txt" name="text"></textarea>
-                                            {{--<script>--}}
-                                                {{--$(document).ready(function() {--}}
-
-                                                    {{--$("{{'#'}}{{"btn"}}{{$thread->id}}").click(function(){--}}
-                                                        {{--$('#summernote{{$thread->id}}').summernote('focus');--}}
-                                                           {{--$('#summernote{{$thread->id}}').summernote('code', '');--}}
-                                                    {{--});--}}
-                                                {{----}}
-                                                    {{--$("{{'#'}}{{"btn1"}}{{$thread->id}}").click(function(){--}}
-                                                            {{--$('#summernote{{$thread->id}}').summernote('code',$.parseHTML('<blockquote>{!!$thread->text!!}</blockquote>'));--}}
-                                                        {{--$('#summernote{{$thread->id}}').summernote('code',$.parseHTML('<button type="button" style="width:100%; text-align:left; line-height: 1px;" class="btn btn-info" data-toggle="collapse" data-target="#demo{{$thread->id}}">--</button>  <div id="demo{{$thread->id}}" class="collapse in"> <blockquote>   {!! $thread->text !!} </blockquote>  </div>  <div> &nbsp </div>'));});--}}
-                                                    {{----}}
-                                                        {{--$('#summernote{{$thread->id}}').summernote('focus', '');--}}
-
-                                                {{--});--}}
-                                            {{--</script>--}}
                                         </div>
                                     </div>
                                    <button id="" type="button" class="reply-close hide btn btn-danger">close</button>

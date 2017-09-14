@@ -112,15 +112,24 @@
                 $(temp).removeClass('hide');
                 var $temp = $($(this).closest('div[class="col-md-12"]').children('div[class="panel-footer"]').children('div[class="reply-box"]').children('form').children('div[class="form-group"]').children('div').children());
                 if ($temp.next('.note-editor').length === 0) {
+                    $temp.summernote('destroy');
+                    $temp.summernote('code','');
+                }
+                else
+                {
+                    $temp.summernote('destroy');
                     $temp.summernote();
+
                 }
                 var $temp = $($(this).closest('div[class="col-md-12"]').children('div[class="panel-footer"]').children('div[class="reply-box"]').children('form').children('button[class="reply-close hide btn btn-danger"]').removeClass('hide'));
             }
         });
         $(".reply-close").click(function(){
-            var temp=$(this).parentsUntil('div[class="form-group"]').children('form').children('div[class="form-group"]').children('div').children();
-            // $(temp).summernote('destroy');
-            console.log(temp);
+            var temp=$(this).parentsUntil('div[class="form-group"]').children('form').children('div[class="form-group"]').children('div').children('textarea');
+           // $("temp").val('');
+           // console.log(temp);
+            $(temp).summernote('destroy');
+
             var $this   = $(this).closest('div[class="reply-box"]').addClass('hide');
         });
         $(".quote").click(function(){
@@ -130,9 +139,12 @@
                 $(temp).removeClass('hide');
                 var $temp = $($(this).closest('div[class="col-md-12"]').children('div[class="panel-footer"]').children('div[class="reply-box"]').children('form').children('div[class="form-group"]').children('div').children());
                 if ($temp.next('.note-editor').length === 0) {
+                    var first='<button type="button"  style="width:100%; font-weight:600; padding-left: 10px; border-top-right-radius:5px !important ; border-top-left-radius:5px !important; border:0; text-align:left;   padding-bottom:0; line-height: 20px; background:#bcd2ee; min-height:25px">Quoted<i class="fa fa1 fa-chevron-down" aria-hidden="true"></i></button>  <div style="padding-top:0; padding: 5px;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border:solid;padding-left: 10px;  border-color:#bcd2ee; border-width:0px 3px 3px 3px;">';
+                    var second='<a style="padding-left:49%;cursor:pointer; background-color:white;"><i class="fa fa1 fa-chevron-up" aria-hidden="true"></i></a> </div>  <div> &nbsp </div>';
                     var markupStr = $(this).parentsUntil('div[class="col-md-10 col-sm-10 col-xs-12"]').closest('div[class="col-md-10 col-sm-10 col-xs-12"]').children('div[class="col-md-12 col-sm-12 comment-text"]').html();
-                    console.log(markupStr);
-                    $temp.summernote('code',markupStr);
+                    var final=first+markupStr+second;
+                    //console.log(markupStr);
+                    $temp.summernote('code',final);
                 }
 //                var $temp = $($(this).closest('div[class="col-md-12"]').children('div[class="panel-footer"]').children('div[class="reply-box"]').children('form').children('div[class="form-group"]').children('div').children().summernote());
                 var $temp = $($(this).closest('div[class="col-md-12"]').children('div[class="panel-footer"]').children('div[class="reply-box"]').children('form').children('button[class="reply-close hide btn btn-danger"]').removeClass('hide'));

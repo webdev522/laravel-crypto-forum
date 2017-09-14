@@ -35,15 +35,18 @@ class HomeController extends Controller
     public function index($forum_id=null,$thread_id=null)
     {
         //dd($forum_id,$thread_id);
-
-
-
-
-
         $user = Auth::user();
         $user->load(['notifications']);
         $forums=forum::where('type','=','forum')->get();
-        $follows=favourite::where('f_user_id','=',1)->get();
+        $follows=favourite::where('f_user_id','=',$user->id)->get();
+        $user_f=User::where('id',$user->id)->get();
+    //        foreach ($user as $u)
+    //        {
+    //            if(isset($u->following->id))
+    //            {
+    //                dd($u->following);
+    //            }
+    //        }
         if(isset($thread_id) && $thread_id != null)
         {
             $home_thread=thread::withCount('like')->withCount('like_user')->get();
@@ -53,6 +56,7 @@ class HomeController extends Controller
             $single=thread::where('title',$temp_thread->title)->withCount('like')->withCount('like_user')->get();
             //dd($single);
             return view('home')
+                ->with('user_f',$user_f)
                 ->with('single',$single)
                 ->with('charts',$charts)
                 ->with('links',$links)
@@ -68,6 +72,7 @@ class HomeController extends Controller
             $charts=thread::withCount('like')->withCount('like_user')->where('is_chart',1)->where('slug',$forum_id)->get();
             $links=thread::withCount('like')->withCount('like_user')->where('is_link',1)->where('slug',$forum_id)->get();
             return view('home')
+                ->with('user_f',$user)
                 ->with('follows',$follows)
                 ->with('forum_threads',$forum_threads)
                 ->with('charts',$charts)
@@ -82,6 +87,7 @@ class HomeController extends Controller
             $charts=thread::withCount('like')->withCount('like_user')->where('is_chart',1)->get();
             $links=thread::withCount('like')->withCount('like_user')->where('is_link',1)->get();
             return view('home')
+                ->with('user_f',$user)
                 ->with('follows',$follows)
                 ->with('charts',$charts)
                 ->with('links',$links)

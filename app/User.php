@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -43,7 +44,7 @@ class User extends Authenticatable
 	
 	public function following(){
 	 
-        return $this->hasMany(favourite::class, 'f_user_id','id');
+        return $this->hasMany(favourite::class, 'f_user_id','id')->where('f_user_id',Auth::id());
 												  
 							   
 							   
