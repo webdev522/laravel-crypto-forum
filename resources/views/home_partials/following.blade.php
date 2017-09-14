@@ -38,54 +38,56 @@
                     </div>
 
 
-                    <div class="col-md-12 col-sm-10 col-xs-12">
-                <div class="row">
-                    <div>
-                        <div class="panel-footer " style="border:none; padding:0px">
 
-                            <div class="reply-box hide" id="f{{$follow->threads->id}}">
+                    <div class="row">
+                        <div class="col-md-12">
 
-                                <form method="POST" action="{{route('threads.store')}}">
-                                    {{csrf_field()}}
-                                    <input type="hidden" name="title" value="{{$follow->threads->title}}">
-                                    <input type="hidden" name="slug" value="{{$follow->threads->slug}}">
-                                    <div class="form-group">
-                                        <div id="sample">
-                                            <textarea id="summernotef{{$follow->threads->id}}" name="text"></textarea>
 
+                            <div class="panel-footer" style="border:none;padding:0;">
+                                <div class="reply-box hide" id="{{$follow->threads->id}}">
+
+                                    <form method="POST" action="{{route('threads.store')}}">
+                                        {{csrf_field()}}
+                                        <input type="hidden" name="title" value="{{$follow->threads->title}}">
+                                        <input type="hidden" name="slug" value="{{$follow->threads->slug}}">
+                                        <div class="form-group">
+                                            <div id="sample">
+                                                <textarea class="reply_txt" name="text"></textarea>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <button id="{{"fbtn1-close"}}" type="button" class="reply-close hide btn btn-danger">close</button>
-                                     <button id="{{"fbtn2-close"}}" type="button" class="reply-close hide btn btn-danger">close</button>
-                                    <button type="submit" class="btn btn-info pull-right " style="">Reply</button>
-                                </form>
+                                        <button id="" type="button" class="reply-close hide btn btn-danger">close</button>
+                                        <button id="" type="button" class="qoute-close hide btn btn-danger">close</button>
+                                        <button type="submit" class="btn btn-info pull-right " style="">Reply</button>
+                                    </form>
+                                </div>
                             </div>
+
+                            <br>
+
+
+                            <div class="comment-box-bottom">
+                                <ul>
+                                    <li class=""><a href="javascript:void(0);"  onclick="like('{{$follow->threads->id}}','thread')" ><i class="fa like_h like {{($follow->threads->like_user_count > 0)?'fa-heart':'fa-heart-o'}} text-info" aria-hidden="true"></i></a>
+
+                                        <div class="hide" style="color: #3c763d;display: inherit;">{{$follow->threads->like_count}}</div>
+                                    </li>
+
+
+                                    <li>
+                                        <img class="like_h reply" src="{{asset('assets/img/arrow.png')}}" alt="">
+                                        <div class="text-info hide ">Reply</div>
+                                    </li>
+                                    <li><img class="like_h quote" src="{{asset('assets/img/qoute.png')}}" alt="">
+                                        <div class="text-info hide" >Qoute</div></li>
+                                    <li class="text-info">  <span class="like_h"> ...</span>
+
+                                        <div class="text-info hide" >More</div></li>
+                                </ul>
+                            </div>
+                            <br>
                         </div>
 
-                        <br>
-
-
-                       <div class="comment-box-bottom">
-                        <ul>
-                         <li class=""><a href="javascript:void(0);"  onclick="like('{{$follow->threads->id}}','thread')" ><i class="fa like_h like {{($follow->threads->like_user_count>0)?'fa-heart':'fa-heart-o'}} text-info" aria-hidden="true"></i></a>
-
-                                <div class="hide" style="color: #3c763d;display: inherit;">{{$follow->threads->like_count}}</div>
-                            </li>
-
-                            <li id="{{"fbtn1"}}"><img class="like_h" src="{{asset('assets/img/arrow.png')}}" alt="">
-                                <div class="text-info hide">Reply</div>
-                            </li>
-                            <li id="{{"fbtn2"}}" ><img class="like_h" src="{{asset('assets/img/qoute.png')}}" alt="">
-                                <div class="text-info hide" >Qoute</div></li>
-                            <li class="text-info ">  <span class="like_h"> ...</span>
-
-                                <div class="text-info hide" >More</div></li>
-                        </ul>
                     </div>
-                        <br>
-                    </div>
-
-                </div>
             </div>
 
 

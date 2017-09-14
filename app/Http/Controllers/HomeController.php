@@ -7,12 +7,14 @@ use App\favourite;
 use App\forum;
 use App\like;
 use App\post;
+use App\stat;
 use App\thread;
 use App\User;			 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Mockery\Exception;					  
+use Mockery\Exception;
+use Htunlogic\Poloniex\Poloniex;
 
 class HomeController extends Controller
 {
@@ -33,10 +35,16 @@ class HomeController extends Controller
      */
     public function index($forum_id=null,$thread_id=null)
     { //dd($forum_id,$thread_id);
+//        $balance=Poloniex::getTickers();
+//        dd($balance);
+
+
+
+
 
         $user = Auth::user();
         $user->load(['notifications']);
-        $forums=forum::all();
+        $forums=forum::where('type','=','forum')->get();
         $follows=favourite::where('f_user_id','=',1)->get();
         if(isset($thread_id) && $thread_id != null)
         {
@@ -56,10 +64,11 @@ class HomeController extends Controller
         }
         elseif(isset($forum_id) && $forum_id != null)
         {
+            $follows=favourite::where('f_user_id','=',$user->id)->get();
             $forum_threads=thread::withCount('like')->withCount('like_user')->where('slug',$forum_id)->get();
             $home_thread=thread::withCount('like')->withCount('like_user')->get();
-            $charts=thread::withCount('like')->withCount('like_user')->where('is_chart',1)->get();
-            $links=thread::withCount('like')->withCount('like_user')->where('is_link',1)->get();
+            $charts=thread::withCount('like')->withCount('like_user')->where('is_chart',1)->where('slug',$forum_id)->get();
+            $links=thread::withCount('like')->withCount('like_user')->where('is_link',1)->where('slug',$forum_id)->get();
             return view('home')
                 ->with('follows',$follows)
                 ->with('forum_threads',$forum_threads)
