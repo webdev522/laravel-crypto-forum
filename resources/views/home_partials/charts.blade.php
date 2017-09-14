@@ -1,5 +1,5 @@
 <div class="tab-content clearfix" >
-    <h5>View as: <strong>Links</strong> </h5>
+    <h5>View as: <strong>Charts</strong> </h5>
     <hr>
     @foreach($charts as $chart)
         <div class="row">  <!-- first post start -->

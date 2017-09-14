@@ -162,7 +162,6 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Htunlogic\Poloniex\PoloniexServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -228,7 +227,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'FCM'      => LaravelFCM\Facades\FCM::class,
-        'Poloniex' => Htunlogic\Poloniex\Poloniex::class,
+
 
     ],
 

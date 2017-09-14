@@ -14,7 +14,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Mockery\Exception;
-use Htunlogic\Poloniex\Poloniex;
 
 class HomeController extends Controller
 {
@@ -34,9 +33,8 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index($forum_id=null,$thread_id=null)
-    { //dd($forum_id,$thread_id);
-//        $balance=Poloniex::getTickers();
-//        dd($balance);
+    {
+        //dd($forum_id,$thread_id);
 
 
 

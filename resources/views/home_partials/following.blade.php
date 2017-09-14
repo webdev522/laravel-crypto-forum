@@ -97,6 +97,5 @@
 
         </div>
         {{--<hr>--}}
-    </div>
-    <hr>
+
 @endforeach
