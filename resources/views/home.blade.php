@@ -65,22 +65,22 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-4"><h5 class="pair-style">Pair:</h5></div>
-                                <div class="col-md-8"> <h5 class="pair-style">BTC/BCN</h5></div>
+                                <div class="col-md-8"> <h5 class="pair-style">{{$curr->cur_from}}/{{$curr->cur_to}}</h5></div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12"> <h5 class="pair-style1">Last 24 Hours</h5></div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4 pull-left text-style"> <h5>BCT/UDST</h5><h5>Change</h5><h5>High</h5>  <h5>Low</h5><h5>Volume</h5></div>
-                                <div class="col-md-8 pull-right text-style text-align"><h5 class="pair-color" >$2650</h5> <h5 class="pair-color">+2.90( 2.90% )</h5><h5>$2750</h5><h5>$2650</h5><h5>10,000,000.9 USDT</h5></div>
+                                <div class="col-md-4 pull-left text-style"> <h5>{{$curr->cur_from}}/{{$curr->cur_to}}</h5><h5>Change</h5><h5>High</h5>  <h5>Low</h5><h5>Volume</h5></div>
+                                <div class="col-md-8 pull-right text-style text-align"><h5 class="pair-color" >$2650</h5> <h5 class="pair-color">+2.90( 2.90% )</h5><h5>${{$curr->high24hr}}</h5><h5>${{$curr->low24hr}}</h5><h5>{{$curr->quoteVolume}} {{$curr->cur_to}}</h5></div>
                             </div>
                             <div class="row"></div>
 
                         </div>
-                        <div class="col-md-7">
+                        <div class="col-md-9">
                             <div id="chartdiv" style="width:100%; height: 333px"></div>
                         </div>
-                        <div class="col-md-2"></div>
+
                     </div>
                 <div class="row">
                     <div id="exTab1" class="">

@@ -44,6 +44,8 @@ class HomeController extends Controller
         $t_volume=stat::orderBy('created_at','DESC')->orderBy('baseVolume','DESC')->take(2)->join('coins','coins.id','fk_coins')->get();
         $gainer=stat::orderBy('created_at','DESC')->orderBy('percentChange','DESC')->take(2)->join('coins','coins.id','fk_coins')->get();
         $stats=stat::where('fk_coins',7)->get();
+        $curr=coin::join('stats','coins.id','stats.fk_coins')->orderBy('created_at','DESC')->first();
+
 
 //        dd($stats);
 //            foreach ($stat as $u)
@@ -59,6 +61,7 @@ class HomeController extends Controller
             $single=thread::where('title',$temp_thread->title)->withCount('like')->withCount('like_user')->get();
             //dd($single);
             return view('home')
+                ->with('curr',$curr)
                 ->with('stats',$stats)
                 ->with('t_volume',$t_volume)
                 ->with('gain',$gainer)
@@ -78,6 +81,7 @@ class HomeController extends Controller
             $charts=thread::withCount('like')->withCount('like_user')->where('is_chart',1)->where('slug',$forum_id)->get();
             $links=thread::withCount('like')->withCount('like_user')->where('is_link',1)->where('slug',$forum_id)->get();
             return view('home')
+                ->with('curr',$curr)
                 ->with('stats',$stats)
                 ->with('t_volume',$t_volume)
                 ->with('gain',$gainer)
@@ -96,6 +100,7 @@ class HomeController extends Controller
             $charts=thread::withCount('like')->withCount('like_user')->where('is_chart',1)->get();
             $links=thread::withCount('like')->withCount('like_user')->where('is_link',1)->get();
             return view('home')
+                ->with('curr',$curr)
                 ->with('stats',$stats)
                 ->with('t_volume',$t_volume)
                 ->with('gain',$gainer)
