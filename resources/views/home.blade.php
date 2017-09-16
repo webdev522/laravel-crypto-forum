@@ -60,19 +60,19 @@
                     <div class="row">
                         <div class="col-md-3">
                             <div class="row">
-                                <div class="col-md-4"><img class="img-responsive" src=' {{asset('assets/img/eth-128.png')}}' type='image/x-icon'></div>
-                                <div class="col-md-8"><h4><b>Bitcoin (BTC)</b></h4></div>
+                                <div class="col-md-4"><img class="img-responsive" src=' {{asset('assets/img/btc.png')}}' type='image/x-icon'></div>
+                                <div class="col-md-8"><h4 style="margin-top: 12%;"><b>Bitcoin (BTC)</b></h4></div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4"><h5>Pair:</h5></div>
-                                <div class="col-md-8"> <h5>BTC/BCN</h5></div>
+                                <div class="col-md-4"><h5 class="pair-style">Pair:</h5></div>
+                                <div class="col-md-8"> <h5 class="pair-style">BTC/BCN</h5></div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12"> <h5>Last 24 Hours</h5></div>
+                                <div class="col-md-12"> <h5 class="pair-style1">Last 24 Hours</h5></div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4 pull-left"> <h5>BCT/UDST</h5><h5>Change</h5><h5>High</h5>  <h5>Low</h5><h5>Volume</h5></div>
-                                <div class="col-md-8 pull-right"><h5>$2650</h5><h5>+2.90( 2.90% )</h5><h5>$2750</h5><h5>$2650</h5><h5>10,000,000.9 USDT</h5></div>
+                                <div class="col-md-4 pull-left text-style"> <h5>BCT/UDST</h5><h5>Change</h5><h5>High</h5>  <h5>Low</h5><h5>Volume</h5></div>
+                                <div class="col-md-8 pull-right text-style text-align"><h5 class="pair-color" >$2650</h5> <h5 class="pair-color">+2.90( 2.90% )</h5><h5>$2750</h5><h5>$2650</h5><h5>10,000,000.9 USDT</h5></div>
                             </div>
                             <div class="row"></div>
 
