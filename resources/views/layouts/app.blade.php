@@ -144,7 +144,9 @@
 
         "periodSelector": {
             "position": "right",
-            "dateFormat": "NN:SS:QQQ", // date format with milliseconds
+            "hideOutOfScopePeriods": false,
+            "inputFieldsEnabled": false,
+            "dateFormat": "DD:MM:YYYY", // date format with milliseconds
             "inputFieldWidth": 150,
             "width":70,
             "periods": [{
@@ -155,7 +157,21 @@
                 "period": "hh",
                 "count": 4,
                 "label": "4 hour"
-            }, {
+            },
+                {
+                    "period": "DD",
+                    "count": 1,
+                    "label": "1 Day"
+                }, {
+                    "period": "MM",
+                    "count": 1,
+                    "label": "1 Month"
+                }, {
+                    "period": "YY",
+                    "count": 1,
+                    "label": "1 Year"
+                },
+                {
                 "period": "MAX",
                 "label": "MAX"
             } ]
