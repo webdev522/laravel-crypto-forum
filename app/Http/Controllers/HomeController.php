@@ -45,7 +45,7 @@ class HomeController extends Controller
         $gainer=stat::orderBy('created_at','DESC')->orderBy('percentChange','DESC')->take(2)->join('coins','coins.id','fk_coins')->get();
         $stats=stat::where('fk_coins',7)->get();
 
-        //dd($stats);
+//        dd($stats);
 //            foreach ($stat as $u)
 //            {
 //                dd($u);

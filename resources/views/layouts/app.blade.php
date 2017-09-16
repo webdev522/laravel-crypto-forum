@@ -41,6 +41,7 @@
     <script src="{{config('app.url')}}assets/amcharts/themes/chalk.js" type="text/javascript"></script>
     <script src="{{config('app.url')}}assets/amcharts/themes/patterns.js" type="text/javascript"></script>
     <script>
+        @if(isset($stats))
     var chartData = generateChartData();
 
     function generateChartData() {
@@ -573,7 +574,7 @@
             {{--}--}}
         {{--} );--}}
     {{--</script>--}}
-
+@endif
     @yield('css')
     <style type="text/css">
 
