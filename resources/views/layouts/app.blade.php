@@ -74,7 +74,7 @@
     },
 
     "dataSets": [ {
-    "color": "#b0de09",
+    "color": "#38587d",
     "fieldMappings": [ {
     "fromField": "value",
     "toField": "value"
@@ -146,6 +146,7 @@
             "position": "right",
             "dateFormat": "NN:SS:QQQ", // date format with milliseconds
             "inputFieldWidth": 150,
+            "width":70,
             "periods": [{
                 "period": "mm",
                 "count": 10,
