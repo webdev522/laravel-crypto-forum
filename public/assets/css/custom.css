@@ -11,6 +11,7 @@
         url('../font/Tahoma.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+
 }
 
 
@@ -24,6 +25,16 @@ img , iframe{
         display: block !important;
         max-width: 100% !important;
             margin: auto;
+
+}
+.img_coin{
+    display: block !important;
+    max-width: 100% !important;
+    margin: auto;
+    float: left;
+    padding-top: 5px;
+    padding-top: 3px;
+    padding-right: 1px;
 }
 .profile_p {
     position:relative;
@@ -427,7 +438,7 @@ color: #355275 !important;
     width: 50px;
 }
 .table >thead>tr>th{
-    font-size: 140%;
+    font-size: 16px;
 }
 .thread{
     position: relative !important;
@@ -729,4 +740,27 @@ color: #355275 !important;
     margin: auto;
     left: 0;
     right: 0;
+}
+/* currency table page style */
+.table-currency > tbody > tr > td{
+    font-size: 14px !important;
+    vertical-align: middle !important;
+}
+.table-currency .img-name >img{
+    width: 20px !important;
+}
+.table-currency .img-graph a {
+    border: 1px solid #000 !important;
+}
+.table-currency .fa{
+    font-size: 10px !important;
+}
+#sl a{
+    text-decoration: none;
+}
+#sl a >span{
+    color:#000 !important;
+}
+td >.img-graph >a >img{
+    border: 1px solid #000 !important;
 }

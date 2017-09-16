@@ -13,41 +13,75 @@
 				@if(isset($single))
                     @include('home_partials.single')
                 @else
+
                 <div class="row" style="border:1px solid #eee; margin-right:20px; padding:10px 0px; border-left:0px;">
                     <div class="col-md-12 ">
-                        <div class="col-md-2 col-sm-4 col-xs-6">
-                            <p>
-                                <img class="img-responsive img-size" src=' {{asset('assets/img/eth-128.png')}}' type='image/x-icon'>
-                            </p>
+                        <div class="col-md-3 col-sm-4 col-xs-6">
+                            <div class="col-md-6"><img class="img-responsive" src=' {{asset('assets/img/eth-128.png')}}' type='image/x-icon'></div>
+                            <div class="col-md-6">
+                                <span class="pull-right" style="font-size: 10px">Top Volume</span>
+                                <span class="pull-right" style="font-size: 10px">{{$t_volume[0]->cur_from}}</span>
+                                <span class="pull-right" style="font-size: 10px">{{$t_volume[0]->baseVolume}}{{$t_volume[0]->cur_to}}</span>
+                                <span class="pull-right" style="font-size: 10px">{{$t_volume[0]->percentChange}}%</span>
+                            </div>
                         </div>
-                        <div class="col-md-2 col-sm-4 col-xs-6">
-                            <p>
-                                <img class="img-responsive img-size" src=' {{asset('assets/img/eth-128.png')}}' type='image/x-icon'>
-                            </p>
+                        <div class="col-md-3 col-sm-4 col-xs-6">
+                            <div class="col-md-6"><img class="img-responsive" src=' {{asset('assets/img/eth-128.png')}}' type='image/x-icon'></div>
+                            <div class="col-md-6">
+                                <span class="pull-right" style="font-size: 10px">Top Volume</span>
+                                <span class="pull-right" style="font-size: 10px">{{$gain[0]->cur_from}}</span>
+                                <span class="pull-right" style="font-size: 10px">{{$gain[0]->baseVolume}}{{$t_volume[0]->cur_to}}</span>
+                                <span class="pull-right" style="font-size: 10px">{{$gain[0]->percentChange}}%</span>
+                            </div>
                         </div>
-                        <div class="col-md-2 col-sm-4 col-xs-6">
-                            <p>
-                                 <img class="img-responsive img-size" src=' {{asset('assets/img/eth-128.png')}}' type='image/x-icon'>
-                            </p>
+                        <div class="col-md-3 col-sm-4 col-xs-6">
+                            <div class="col-md-6"><img class="img-responsive" src=' {{asset('assets/img/eth-128.png')}}' type='image/x-icon'></div>
+                            <div class="col-md-6">
+                                <span class="pull-right" style="font-size: 10px">Top Volume</span>
+                                <span class="pull-right" style="font-size: 10px">{{$t_volume[1]->cur_from}}</span>
+                                <span class="pull-right" style="font-size: 10px">{{$t_volume[1]->baseVolume}}{{$t_volume[1]->cur_to}}</span>
+                                <span class="pull-right" style="font-size: 10px">{{$t_volume[1]->percentChange}}%</span>
+                            </div>
                         </div>
-                        <div class="col-md-2 col-sm-4 col-xs-6">
-                            <p>
-                                <img class="img-responsive img-size" src=' {{asset('assets/img/eth-128.png')}}' type='image/x-icon'>
-                            </p>
+                        <div class="col-md-3 col-sm-4 col-xs-6">
+                            <div class="col-md-6"><img class="img-responsive" src=' {{asset('assets/img/eth-128.png')}}' type='image/x-icon'></div>
+                            <div class="col-md-6">
+                                <span class="pull-right" style="font-size: 10px">Top Volume</span>
+                                <span class="pull-right"style="font-size: 10px">{{$gain[1]->cur_from}}</span>
+                                <span class="pull-right" style="font-size: 10px">{{$gain[1]->baseVolume}}{{$gain[1]->cur_to}}</span>
+                                <span class="pull-right" style="font-size: 10px">{{$gain[1]->percentChange}}%</span>
+                            </div>
                         </div>
-                        <div class="col-md-2 col-sm-4 col-xs-6">
-                            <p>
-                                <img class="img-responsive img-size" src=' {{asset('assets/img/eth-128.png')}}' type='image/x-icon'>
-                            </p>
-                        </div>
-                        <div class="col-md-2 col-sm-4 col-xs-6">
-                            <p>
-                                <img class="img-responsive img-size" src=' {{asset('assets/img/eth-128.png')}}' type='image/x-icon'>
-                            </p>
-                        </div>
+
                     </div>
 
                 </div>
+                <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-md-4"><img class="img-responsive" src=' {{asset('assets/img/eth-128.png')}}' type='image/x-icon'></div>
+                                <div class="col-md-8"><h4><b>Bitcoin (BTC)</b></h4></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4"><h5>Pair:</h5></div>
+                                <div class="col-md-8"> <h5>BTC/BCN</h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12"> <h5>Last 24 Hours</h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 pull-left"> <h5>BCT/UDST</h5><h5>Change</h5><h5>High</h5>  <h5>Low</h5><h5>Volume</h5></div>
+                                <div class="col-md-8 pull-right"><h5>$2650</h5><h5>+2.90( 2.90% )</h5><h5>$2750</h5><h5>$2650</h5><h5>10,000,000.9 USDT</h5></div>
+                            </div>
+                            <div class="row"></div>
+
+                        </div>
+                        <div class="col-md-7">
+                            <div id="chartdiv" style="width:100%; height: 333px"></div>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
                 <div class="row">
                     <div id="exTab1" class="">
                         <div class="col-md-4 col-sm-3">

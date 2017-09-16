@@ -54,13 +54,13 @@
             ?>
             <!-- row1 start-->
             <tr>
-                <td><?php echo $item['rank']; ?></td>
-                <td class="img-name"> <img src="https://files.coinmarketcap.com/static/img/coins/16x16/{{$item['id']}}.png" alt=""> <a href="{{route('home',$item['symbol'])}}"><?php echo $item['name']; ?></a></td>
-                <td> $<?php echo $item['market_cap_usd']; ?></td>
-                <td> <a href="#"> $<?php echo $item['price_usd']; ?></a></td>
-                <td> <a href="#"> <?php echo $item['24h_volume_usd']; ?> XBC *</a></td>
-                <td> <a href="#">$<?php echo $item['price_usd']; ?></a></td>
-                <td><?php echo $item['percent_change_24h']; ?>%</td>
+                <td class="text-nowrap"><?php echo $item['rank']; ?></td>
+                <td class="img-name text-nowrap"> <img class="img_coin" src="https://files.coinmarketcap.com/static/img/coins/16x16/{{$item['id']}}.png" alt=""> <a href="{{route('home',$item['symbol'])}}"><?php echo $item['name']; ?></a></td>
+                <td class="text-nowrap"> $<?php echo $item['market_cap_usd']; ?></td>
+                <td class="text-nowrap"> <a href="#"> $<?php echo $item['price_usd']; ?></a></td>
+                <td class="text-nowrap"> <a href="#"> <?php echo $item['24h_volume_usd']; ?> XBC *</a></td>
+                <td class="text-nowrap"> <a href="#">$<?php echo $item['price_usd']; ?></a></td>
+                <td class="text-nowrap"><?php echo $item['percent_change_24h']; ?>%</td>
             </tr> <!-- row 1 end -->
             <?php } ?>
             </tbody>

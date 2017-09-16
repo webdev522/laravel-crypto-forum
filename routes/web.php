@@ -21,6 +21,7 @@ Route::get('/home/{forum_id?}/{thread_id?}', 'HomeController@index')->name('home
 Route::get('/update_fcm_token', 'HomeController@update_token');
 
 Route::get('/api/fech_form', 'ApiController@fetch_forum')->name('fetch_forum');
+Route::get('/stats', 'HomeController@stats')->name('stats');
 Route::resource('threads', 'ThreadController');
 Route::resource('posts', 'PostController');
 Route::get('profile','HomeController@profile')->name("profile");
