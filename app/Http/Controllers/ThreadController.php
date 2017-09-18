@@ -41,7 +41,8 @@ class ThreadController extends Controller
         //dd($request);
         $thread = new thread();
         $thread->title = $request['title'];
-        $thread->text = $request['text'];
+        $temp=$temp=str_replace('disabled=""',' ',$request['text']);
+        $thread->text =$temp;
         if (strpos($request['text'], '</a>') !== false) {
            $thread->is_link=1;
         }

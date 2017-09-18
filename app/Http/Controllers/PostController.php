@@ -65,6 +65,7 @@ class PostController extends Controller
         $user=User::find($request->user()->id);
         $user->u_posts=$user->u_posts+1;
         $user->save();
+
 //        $post = new post();
 //        $temp=$request['text'];
 //        $temp=str_replace('disabled=""',' ',$temp);
