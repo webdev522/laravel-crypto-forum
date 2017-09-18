@@ -11,7 +11,6 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    {{--<link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.6/summernote.css" rel="stylesheet">
     <link rel="stylesheet" href="{{config('app.url')."assets/font-awesome/css/font-awesome.min.css"}}">
@@ -41,7 +40,7 @@
     <script src="{{config('app.url')}}assets/amcharts/themes/chalk.js" type="text/javascript"></script>
     <script src="{{config('app.url')}}assets/amcharts/themes/patterns.js" type="text/javascript"></script>
 
-        @if(isset($stats))
+        @if(isset($stats) && isset($forum_threads))
         <script>
     var chartData = generateChartData();
 
@@ -182,9 +181,74 @@
     }
     } );
     </script>
+        @elseif(isset($stats))
+        <script>
+            var chart = AmCharts.makeChart( "chartdiv", {
+                "type": "serial",
+                "theme": "light",
+                "dataDateFormat":"YYYY-MM-DD",
+                "valueAxes": [ {
+                    "position": "left"
+                } ],
+                "graphs": [ {
+                    "id": "g1",
+                    "balloonText": "Open:<b>[[open]]</b><br>Low:<b>[[low]]</b><br>High:<b>[[high]]</b><br>Close:<b>[[close]]</b><br>",
+                    "closeField": "close",
+                    "fillColors": "#7f8da9",
+                    "highField": "high",
+                    "lineColor": "#7f8da9",
+                    "lineAlpha": 1,
+                    "lowField": "low",
+                    "fillAlphas": 0.9,
+                    "negativeFillColors": "#db4c3c",
+                    "negativeLineColor": "#db4c3c",
+                    "openField": "open",
+                    "title": "Price:",
+                    "type": "candlestick",
+                    "valueField": "close"
+                } ],
+                "chartScrollbar": {
+                    "graph": "g1",
+                    "graphType": "line",
+                    "scrollbarHeight": 30
+                },
+                "chartCursor": {
+                    "valueLineEnabled": true,
+                    "valueLineBalloonEnabled": true
+                },
+                "categoryField": "date",
+                "categoryAxis": {
+                    "parseDates": true
+                },
+                "dataProvider": [
+                        @foreach($stats as $stat)
+                    {
+                    "date": "{{Carbon\Carbon::parse($stat->created_at)->toDateString()}}",
+                    "open": "{{$stat->last}}",
+                    "high": "{{$stat->lowestAsk}}",
+                    "low": "{{$stat->highestBid}}",
+                    "close": "{{$stat->low24hr}}"
+                },
+                @endforeach
+                ],
 
+                "export": {
+                    "enabled": true,
+                    "position": "bottom-right"
+                }
+            } );
 
-@endif
+            chart.addListener( "rendered", zoomChart );
+            zoomChart();
+
+            // this method is called when chart is first inited as we listen for "dataUpdated" event
+            function zoomChart() {
+                // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
+                chart.zoomToIndexes( chart.dataProvider.length - 10, chart.dataProvider.length - 1 );
+            }
+        </script>
+
+        @endif
     @yield('css')
     <style type="text/css">
 
@@ -271,15 +335,14 @@
 
             var $this   = $(this).closest('div[class="reply-box"]').addClass('hide');
         });
-        $("#col_in").click(function(){
-            var temp=$(this).parentsUntil('div[class="form-group"]').children('form').children('div[class="form-group"]').children('div').children('textarea');
-            console.log('here in');
+        $(document).on('click', '.colout', function(event){
+             console.log($(this));
+
 
         });
-        $("#col_out").click(function(){
-            console.log("here out");
+        $(document).on('click', '.colin', function(event){
+             console.log($(this));
 
-            //var temp=$(this).parentsUntil('div[class="form-group"]').children('form').children('div[class="form-group"]').children('div').children('textarea');
 
         });
         $(".quote").click(function(){
@@ -289,8 +352,8 @@
                 $(temp).removeClass('hide');
                 var $temp = $($(this).closest('div[class="col-md-12"]').children('div[class="panel-footer"]').children('div[class="reply-box"]').children('form').children('div[class="form-group"]').children('div').children());
                 if ($temp.next('.note-editor').length === 0) {
-                    var first='<button type="button" id="col_out"  style="width:100%; font-weight:600; padding-left: 10px; border-top-right-radius:5px !important ; border-top-left-radius:5px !important; border:0; text-align:left;   padding-bottom:0; line-height: 20px; background:#bcd2ee; min-height:25px">Quoted<i class="fa fa1 fa-chevron-down" aria-hidden="true"></i></button>  <div style="padding-top:0; padding: 5px;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border:solid;padding-left: 10px;  border-color:#bcd2ee; border-width:0px 3px 3px 3px;">';
-                    var second='<a id="col_in" style="padding-left:49%;cursor:pointer; background-color:white;"><i class="fa fa1 fa-chevron-up" aria-hidden="true"></i></a> </div>  <div> &nbsp </div>';
+                    var first='<button type="button"  class="colout"  style="width:100%; font-weight:600; padding-left: 10px; border-top-right-radius:5px !important ; border-top-left-radius:5px !important; border:0; text-align:left;   padding-bottom:0; line-height: 20px; background:#bcd2ee; min-height:25px">Quoted<i class="fa fa1 fa-chevron-down" aria-hidden="true"></i></button>  <div style="padding-top:0; padding: 5px;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border:solid;padding-left: 10px;  border-color:#bcd2ee; border-width:0px 3px 3px 3px;">';
+                    var second='<a class="colin" style="padding-left:49%;cursor:pointer; background-color:white;"><i class="fa fa1 fa-chevron-up" aria-hidden="true"></i></a> </div>  <div> &nbsp </div>';
                     var markupStr = $(this).parentsUntil('div[class="col-md-10 col-sm-10 col-xs-12"]').closest('div[class="col-md-10 col-sm-10 col-xs-12"]').children('div[class="col-md-12 col-sm-12 comment-text"]').html();
                     var final=first+markupStr+second;
                     //console.log(markupStr);
