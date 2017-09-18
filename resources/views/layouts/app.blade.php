@@ -342,9 +342,8 @@
         });
         $(document).on('click', '.colin', function(event){
              $(this).closest('[class="quoteDiv"]').toggle();
-
-
         });
+
         $(".quote").click(function(){
             var $this   = $(this)
             var temp=$(this).closest('div[class="col-md-12"]').children('div[class="panel-footer"]').children('div[class="reply-box hide"]');
@@ -353,7 +352,7 @@
                 var $temp = $($(this).closest('div[class="col-md-12"]').children('div[class="panel-footer"]').children('div[class="reply-box"]').children('form').children('div[class="form-group"]').children('div').children());
                 if ($temp.next('.note-editor').length === 0) {
                     var first='<button type="button" disabled class="colout"  style="width:100%; font-weight:600; padding-left: 10px; border-top-right-radius:5px !important ; border-top-left-radius:5px !important; border:0; text-align:left;   padding-bottom:0; line-height: 20px; background:#bcd2ee; min-height:25px">Quoted<i class="fa fa1 fa-chevron-down" aria-hidden="true"></i></button>  <div class="quoteDiv" style="padding-top:0; padding: 5px;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border:solid;padding-left: 10px;  border-color:#bcd2ee; border-width:0px 3px 3px 3px;">';
-                    var second='<a class="colin" disabled style="padding-left:49%;cursor:pointer; background-color:white;"><i class="fa fa1 fa-chevron-up" aria-hidden="true"></i></a> </div>  <div> &nbsp </div>';
+                    var second='<button class="colin" disabled style="width:100%; font-weight:600; padding-left: 10px; border-top-right-radius:5px !important ; border-top-left-radius:5px !important; border:0; text-align:left;   padding-bottom:0; line-height: 20px; background:#fff; min-height:25px"><i class="fa fa1 fa-chevron-up" aria-hidden="true"></i></button> </div>  <div> &nbsp </div>';
                     var markupStr = $(this).parentsUntil('div[class="col-md-10 col-sm-10 col-xs-12"]').closest('div[class="col-md-10 col-sm-10 col-xs-12"]').children('div[class="col-md-12 col-sm-12 comment-text"]').html();
                     var final=first+markupStr+second;
                     //console.log(markupStr);

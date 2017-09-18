@@ -1,3 +1,8 @@
+
+
+<hr>
+<p>View as: <a href="">Thread</a></p>
+<hr>
 @foreach($home_thread as $thread)
     <div class="row">  <!-- first post start -->
         <div class="container-fluid">

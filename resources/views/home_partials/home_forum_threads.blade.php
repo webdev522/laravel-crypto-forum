@@ -3,7 +3,6 @@
         <select id="s_view">
             <option value="threads">Threads</option>
             <option value="tweets">Tweets</option>
-
         </select>
     </strong>
 </h5>
@@ -47,14 +46,10 @@
                             {!! $thread->text !!}
 
                         </div>
-
-                        <hr>
-
-
+                         <hr>
                         <div class="row">
+                            
                             <div class="col-md-12">
-
-
                                 <div class="panel-footer" style="border:none;padding:0;">
                                     <div class="reply-box hide" id="{{$thread->id}}">
 

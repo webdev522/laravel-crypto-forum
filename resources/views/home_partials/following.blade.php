@@ -1,5 +1,7 @@
-<div class="tab-content clearfix" >
-    <hr>
+<p>View as: <a href="">Follow</a></p>
+ <hr>
+ <div class="tab-content clearfix" >
+   
     @foreach($follows as $follow)
         @if(isset($follow->threads->id) && $follow->threads->id!=null)
             <div class="row">  <!-- first post start -->
@@ -121,11 +123,10 @@
                 <div class="col-md-2 col-sm-2 col-xs-12 reply col-img"> </div>
                 
             </div>
-
+                 <hr>
         </div>
         @endif
-        <hr>
+       
     @endforeach
 
 </div>
-<hr>

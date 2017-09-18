@@ -1,5 +1,7 @@
+<p>View as: <a href="">Charts</a></p>
+ <hr>
 <div class="tab-content clearfix" >
-    <hr>
+   
     @foreach($charts as $chart)
         @if(isset($chart->id) && $chart->id!=null)
             <div class="row">  <!-- first post start -->
@@ -37,10 +39,11 @@
 
                         </div>
 
-                        <hr>
+                       
 
 
                         <div class="row">
+                             <hr>
                             <div class="col-md-12">
 
 
@@ -121,11 +124,10 @@
                 <div class="col-md-2 col-sm-2 col-xs-12 reply col-img"> </div>
                 
             </div>
-
+             <hr>
         </div>
         @endif
-        <hr>
+       
     @endforeach
 
 </div>
-<hr>
