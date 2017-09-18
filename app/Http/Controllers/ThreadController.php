@@ -46,7 +46,7 @@ class ThreadController extends Controller
         if (strpos($request['text'], '</a>') !== false) {
            $thread->is_link=1;
         }
-        if (strpos($request['text'], '</img>') !== false) {
+        if (strpos($request['text'], '<img') !== false) {
             $thread->is_chart=1;
         }
         $thread->user_id = $request->user()->id;
