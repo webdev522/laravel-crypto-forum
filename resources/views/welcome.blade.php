@@ -124,7 +124,7 @@
 
                                 <div class="checkbox col-sm-8">
                                     @if ($errors->has('email') && session()->get('r_error') == 'register')
-                                    <span class="help-block">
+                                    <span class="alert alert-danger help-block text-center">
                                     <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                     <script>
@@ -194,9 +194,9 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-sm-4"></label>
-                                <div class="col-sm-8">
+                                <div class="col-sm-12">
                                     @if ($errors->has('email') && session()->get('r_error') !="register")
-                                        <span class="help-block">
+                                        <span class="alert alert-danger help-block text-center">
                                         <strong>{{ $errors->first('email') }}</strong>
                                         </span>
                                         <script>
@@ -206,13 +206,25 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label class="control-label col-sm-4" for="pwd">Keep me signing in</label>
-                                <div class="checkbox col-sm-8">
-                                    <label><input name="remember" type="checkbox"><a href="#">Forgot my Email or Password</a></label>
-                                </div>
-
+                             <div class="form-group"> 
+                                 <div class="col-sm-12">
+                                        <div class="control-label checkbox col-sm-4">
+                                             <input name="remember" type="checkbox">
+                                       </div> 
+                                         <div class="col-sm-8">
+                                              <label for="pwd">Keep me signed in </label> 
+                                         </div>
+                                 </div>                               
                             </div>
+
+                          <div class="form-group">    
+                                <div class="col-sm-8 col-sm-offset-4">
+                                    <label ><a href="#">Forgot my Email or Password</a></label>
+                                </div>
+                                    
+                            </div>
+
+                           
                             <div class="form-group">
                                 <div class=" col-sm-12">
                                     <button type="submit" class="btn-info btn-info1">Sign in</button>
@@ -255,6 +267,12 @@
         .navbar-brand{
             padding: 10px 30px !important;
         }
+
+        .form-horizontal .control-label {
+     padding-top: 0px; 
+    margin-bottom: 0;
+    text-align: right;
+}
         section.header .navbar-default  .navbar-nav  > li > a {
             color: #fff !important;
         }
@@ -472,8 +490,11 @@
             color: #fff;
             font-size: 24px;
         }
-        .modal-dialog {
-            max-width: 470px !important;
+        .modal-dialog {      
+    min-width: 320px !important;
+    margin: 200px auto !important;
+    width: 600px !important;
+        }
             margin: 200px auto !important;
         }
         .form-horizontal .control-label {
