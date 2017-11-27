@@ -43,7 +43,7 @@ class HomeController extends Controller
         $user_f=User::where('id',$user->id)->get();
         $t_volume=stat::orderBy('created_at','DESC')->orderBy('baseVolume','DESC')->take(2)->join('coins','coins.id','fk_coins')->get();
         $gainer=stat::orderBy('created_at','DESC')->orderBy('percentChange','DESC')->take(2)->join('coins','coins.id','fk_coins')->get();
-        $stats=stat::where('fk_coins',7)->get();
+        $stats=stat::where('fk_coins',7)->take(10)->get();
         $curr=coin::join('stats','coins.id','stats.fk_coins')->orderBy('created_at','DESC')->first();
 
 

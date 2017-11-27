@@ -113,13 +113,13 @@
 
 
                             <div class="tab-pane" id="2a">
-                                @include('home_partials.charts')
+{{--                                @include('home_partials.charts')--}}
 							</div>
                             <div class="tab-pane" id="3a"> 
-								  @include('home_partials.following')
+{{--								  @include('home_partials.following')--}}
 							</div>
                             <div class="tab-pane" id="4a">
-								@include('home_partials.links')
+{{--								@include('home_partials.links')--}}
                             </div>
                             @if(isset($forum_threads) && isset($slug))
                             <div class="tab-pane" id="5a">
