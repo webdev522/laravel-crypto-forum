@@ -35,7 +35,6 @@ class HomeController extends Controller
      */
     public function index($forum_id=null,$thread_id=null)
     {
-        //dd($forum_id,$thread_id);
         $user = Auth::user();
         $user->load(['notifications']);
         $forums=forum::where('type','=','forum')->get();
@@ -43,9 +42,22 @@ class HomeController extends Controller
         $user_f=User::where('id',$user->id)->get();
         $t_volume=stat::orderBy('created_at','DESC')->orderBy('baseVolume','DESC')->take(2)->join('coins','coins.id','fk_coins')->get();
         $gainer=stat::orderBy('created_at','DESC')->orderBy('percentChange','DESC')->take(2)->join('coins','coins.id','fk_coins')->get();
-        $stats=stat::where('fk_coins',7)->take(10)->get();
+        $stats=stat::where('fk_coins',7)->get();
+        // $stats = stat::all();
         $curr=coin::join('stats','coins.id','stats.fk_coins')->orderBy('created_at','DESC')->first();
-
+        $api_url  = "https://poloniex.com/public?command=returnChartData&currencyPair=BTC_XMR&start=1405699200&end=9999999999&period=14400";
+        //  Initiate curl
+        $ch = curl_init();
+        // Disable SSL verification
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        // Will return the response, if false it print the response
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // Set the url
+        curl_setopt($ch, CURLOPT_URL,$api_url);
+        // Execute
+        $chart_data = curl_exec($ch);
+        // Closing
+        curl_close($ch);
 
 //        dd($stats);
 //            foreach ($stat as $u)
@@ -60,6 +72,18 @@ class HomeController extends Controller
             $temp_thread=thread::where('id',$thread_id)->first();
             $single=thread::where('title',$temp_thread->title)->withCount('like')->withCount('like_user')->get();
             //dd($single);
+
+
+            // Will dump a beauty json :3
+
+
+
+            // $url = 'https://poloniex.com/public?command=returnChartData&currencyPair=BTC_XMR&start=1405699200&end=9999999999&period=14400';
+            // $data = file_get_contents(urlencode($url));
+            // $array = json_decode($data, true);
+            // print_r($array);
+
+
             return view('home')
                 ->with('curr',$curr)
                 ->with('stats',$stats)
@@ -71,6 +95,7 @@ class HomeController extends Controller
                 ->with('links',$links)
                 ->with('home_thread',$home_thread)
                 ->with('slug',$forum_id)
+                ->with('chart_data',$chart_data)
                 ->with('forums',$forums);
         }
         elseif(isset($forum_id) && $forum_id != null)
@@ -92,6 +117,7 @@ class HomeController extends Controller
                 ->with('links',$links)
                 ->with('home_thread',$home_thread)
                 ->with('slug',$forum_id)
+                ->with('chart_data',$chart_data)
                 ->with('forums',$forums);
         }
         else
@@ -110,6 +136,7 @@ class HomeController extends Controller
                 ->with('links',$links)
                 ->with('home_thread',$home_thread)
                 ->with('slug',$forum_id)
+                ->with('chart_data',$chart_data)
                 ->with('forums',$forums);
         }
 
@@ -127,6 +154,7 @@ class HomeController extends Controller
     }
     public function like_ajax(Request $request){
         $user=Auth::user();
+
         if($user)
         {
 
@@ -144,8 +172,6 @@ class HomeController extends Controller
                     $like=like::where('user_id','=',$user->id)->where('thread_id','=',$request->id);
                     $like->delete();
                     return \response('unliked success',200);
-
-
                 }
         }
         else
@@ -182,14 +208,17 @@ class HomeController extends Controller
         }
 
     }
+
     public function edit_profile(Request $request)
     {
+
         $user=User::find(Auth::id());
         $user->first_name=$request['fname'];
         $user->last_name=$request['lname'];
 
         if(isset($request['img']))
-        {//dd($request);
+        {
+            //dd($request);
             $img_ext = explode('.',$request['img']->getClientOriginalName())[1];
             $request['img']->storeAs('public/profile_images/',Auth::id().'.'.$img_ext);
             $user->img=$img_ext;
@@ -199,6 +228,7 @@ class HomeController extends Controller
         return redirect(route('profile'));
 
     }
+
     public function stats ()
     {
 

@@ -39,107 +39,124 @@
     <script src="{{config('app.url')}}assets/amcharts/themes/black.js" type="text/javascript"></script>
     <script src="{{config('app.url')}}assets/amcharts/themes/chalk.js" type="text/javascript"></script>
     <script src="{{config('app.url')}}assets/amcharts/themes/patterns.js" type="text/javascript"></script>
-
-        @if(isset($stats) && isset($forum_threads))
+    
+        @if(isset($chart_data))
         <script>
-    var chartData = generateChartData();
-
-    function generateChartData() {
-    var chartData = [];
-    var firstDate = new Date( 2012, 0, 1 );
-    firstDate.setDate( firstDate.getDate() - 1000 );
-    firstDate.setHours( 0, 0, 0, 0 );
-
-    // 1 hour in milliseconds
-                @foreach($stats as $stat)
-               chartData.push( {
-                    "date":'{{$stat->created_at}}',
-                    "value": '{{$stat->last}}',
-                    "volume":'{{$stat->baseVolume}}'
-                } );
-
-                @endforeach
-    return chartData;
+    var chart_data = "{{ $chart_data }}"
+    chart_data = JSON.parse(chart_data.replace(/&quot;/g,'"'));
+    for (var i = 0; i < chart_data.length; i++)
+    {
+        chart_data[i].date = new Date(chart_data[i].date*1000);
     }
 
-    var chart = AmCharts.makeChart( "chartdiv", {
+    var chart = AmCharts.makeChart("chartdiv", {
+    type: "stock",
+    theme: "light",
+    dateFormat: "YYYY-MM-DD JJ:NN",
+    dataSets: [{
+        dataProvider: chart_data,
+        "fieldMappings": [ {
+            "fromField": "open",
+            "toField": "open"
+        }, {    
+          "fromField": "close",
+          "toField": "close"
+        }, {
+          "fromField": "high",
+          "toField": "high"
+        }, {
+          "fromField": "low",
+          "toField": "low"
+        }, {
+          "fromField": "volume",
+          "toField": "volume"
+        }, {
+          "fromField": "quoteVolume",
+          "toField": "quoteVolume"
+        },
+        {
+          "fromField": "weightedAverage",
+          "toField": "weightedAverage"
+        }  ],
+            color: "#7f8da9",
+            categoryField: "date"
+        }],
 
-    "type": "stock",
-    "theme": "light",
+    panels: [ {
+        "title": "Value",
+        "showCategoryAxis": false,
+        "percentHeight": 70,
+        "valueAxes": [ {
+            "id": "v1",
+            "dashLength": 5
+        } ],
 
-    "categoryAxesSettings": {
-    "minPeriod": "fff", // set minimum to milliseconds
-    "groupToPeriods": [ 'fff', 'ss' ] // specify period grouping
-    },
+        "categoryAxis": {
+        "dashLength": 5
+        },
 
-    "dataSets": [ {
-    "color": "#38587d",
-    "fieldMappings": [ {
-    "fromField": "value",
-    "toField": "value"
-    }, {
-    "fromField": "volume",
-    "toField": "volume"
-    } ],
+        "stockGraphs": [ {
+            "balloonText": "Open:<b>[[open]]</b><br>Low:<b>[[low]]</b><br>High:<b>[[high]]</b><br>Close:<b>[[close]]</b><br>",
+            "closeField": "close",
+            "fillAlphas": 0.9,
+            "fillColors": "#7f8da9",
+            "highField": "high",
+            "id": "g1",
+            "lineColor": "#7f8da9",
+            "lowField": "low",
+            "negativeFillColors": "#db4c3c",
+            "negativeLineColor": "#db4c3c",
+            "openField": "open",
+            "title": "Price:",
+            "type": "candlestick",
+            "valueField": "close"
+        } ],
 
-    "dataProvider": chartData,
-    "categoryField": "date"
-    } ],
-
-
-    "panels": [ {
-    "showCategoryAxis": false,
-    "title": "Value",
-    "percentHeight": 70,
-
-    "stockGraphs": [ {
-    "id": "g1",
-    "valueField": "value",
-    "type": "smoothedLine",
-    "lineThickness": 2,
-    "bullet": "round"
-    } ],
-
-
-    "stockLegend": {
-    "valueTextRegular": " ",
-    "markerType": "none"
-    }
+        "stockLegend": {
+            "valueTextRegular": undefined,
+            "periodValueTextComparing": "[[percents.value.close]]%"
+        }
     },
 
     {
-    "title": "Volume",
-    "percentHeight": 30,
+      "title": "Volume",
+      "percentHeight": 30,
+      "marginTop": 1,
+      "showCategoryAxis": true,
+      "valueAxes": [ {
+        "dashLength": 5
+    } ],
+
+    "categoryAxis": {
+        "dashLength": 5
+    },
+
     "stockGraphs": [ {
-    "valueField": "volume",
-    "type": "column",
-    "cornerRadiusTop": 2,
-    "fillAlphas": 1
+        "valueField": "volume",
+        "type": "column",
+        "showBalloon": false,
+        "fillAlphas": 1
     } ],
 
     "stockLegend": {
-    "valueTextRegular": " ",
-    "markerType": "none"
+            "markerType": "none",
+            "markerSize": 0,
+            "labelText": "",
+            "periodValueTextRegular": "[[value.close]]"
+        }
     }
-    }
-    ],
+  ],
 
-    "chartScrollbarSettings": {
+    chartScrollbarSettings: {
     "graph": "g1",
-    "usePeriod": "fff",
-    "position": "left"
-    },
+    "graphType": "line",
+    "usePeriod": "WW"
+  },
 
-    "chartCursorSettings": {
-    "valueBalloonsEnabled": true,
-    "categoryBalloonDateFormats": [ {
-    "period": "ss",
-    "format": "NN:SS"
-    }, {
-    "period": "fff",
-    "format": "NN:SS:QQQ"
-    } ]
-    },
+  chartCursorSettings: {
+    "valueLineBalloonEnabled": true,
+    "valueLineEnabled": true
+  },
 
         "periodSelector": {
             "position": "right",
@@ -181,72 +198,6 @@
     }
     } );
     </script>
-        @elseif(isset($stats))
-        <script>
-            var chart = AmCharts.makeChart( "chartdiv", {
-                "type": "serial",
-                "theme": "light",
-                "dataDateFormat":"YYYY-MM-DD",
-                "valueAxes": [ {
-                    "position": "left"
-                } ],
-                "graphs": [ {
-                    "id": "g1",
-                    "balloonText": "Open:<b>[[open]]</b><br>Low:<b>[[low]]</b><br>High:<b>[[high]]</b><br>Close:<b>[[close]]</b><br>",
-                    "closeField": "close",
-                    "fillColors": "#7f8da9",
-                    "highField": "high",
-                    "lineColor": "#7f8da9",
-                    "lineAlpha": 1,
-                    "lowField": "low",
-                    "fillAlphas": 0.9,
-                    "negativeFillColors": "#db4c3c",
-                    "negativeLineColor": "#db4c3c",
-                    "openField": "open",
-                    "title": "Price:",
-                    "type": "candlestick",
-                    "valueField": "close"
-                } ],
-                "chartScrollbar": {
-                    "graph": "g1",
-                    "graphType": "line",
-                    "scrollbarHeight": 30
-                },
-                "chartCursor": {
-                    "valueLineEnabled": true,
-                    "valueLineBalloonEnabled": true
-                },
-                "categoryField": "date",
-                "categoryAxis": {
-                    "parseDates": true
-                },
-                "dataProvider": [
-                        @foreach($stats as $stat)
-                    {
-                    "date": "{{Carbon\Carbon::parse($stat->created_at)->toDateString()}}",
-                    "open": "{{$stat->last}}",
-                    "high": "{{$stat->lowestAsk}}",
-                    "low": "{{$stat->highestBid}}",
-                    "close": "{{$stat->low24hr}}"
-                },
-                @endforeach
-                ],
-
-                "export": {
-                    "enabled": true,
-                    "position": "bottom-right"
-                }
-            } );
-
-            chart.addListener( "rendered", zoomChart );
-            zoomChart();
-
-            // this method is called when chart is first inited as we listen for "dataUpdated" event
-            function zoomChart() {
-                // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
-                chart.zoomToIndexes( chart.dataProvider.length - 10, chart.dataProvider.length - 1 );
-            }
-        </script>
 
         @endif
     @yield('css')
